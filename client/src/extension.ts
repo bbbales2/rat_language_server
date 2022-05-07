@@ -18,21 +18,16 @@ export function activate(context: ExtensionContext) {
 	// If the extension is launched in debug mode then the debug server options are used
 	// Otherwise the run options are used
 	const serverOptions: ServerOptions = {
-		command: "python",
-		args: ["/home/bbales2/projects/lsp-extended/mytest.py"]
+		command: "rat-language-server"
 	};
 
 	// Options to control the language client
 	const clientOptions: LanguageClientOptions = {
 		// Register the server for plain text documents
 		documentSelector: [
-			{ scheme: 'file', language: 'plaintext' },
-			{ scheme: 'untitled', language: 'plaintext' }
-		],
-		synchronize: {
-			// Notify the server about file changes to '.clientrc files contained in the workspace
-			fileEvents: workspace.createFileSystemWatcher('**/.txt')
-		},
+			{ scheme: 'file', language: 'rat' },
+			{ scheme: 'untitled', language: 'rat' }
+		]
 	};
 
 	// Create the language client and start the client.

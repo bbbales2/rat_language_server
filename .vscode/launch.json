@@ -1,0 +1,44 @@
+// A launch configuration that compiles the extension and then opens it inside a new window
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "extensionHost",
+			"request": "launch",
+			"name": "Launch Client",
+			"trace": true,
+			"args": [
+				"${workspaceFolder}/test_workspace/",
+				"--extensionDevelopmentPath=${workspaceFolder}"
+			],
+			// Forward the local PATH along so that whatever
+			// rat-language-server is available here is available
+			// in the subprocess
+			"env" : { "PATH" : "${env:PATH}" },
+			// I believe this rebuilds the javascript from typescript
+			// on launch. Without this changes to the typescript
+			// won't be reflected on run
+			"preLaunchTask" : {
+				"type": "npm",
+				"script": "watch"
+			}
+		},
+		// This can be used to attach a debugger to the running
+		// rat-language-server process. It's probably better to do
+		// regular debug development through the rat-language-server
+		// logger
+		{
+			"name": "Attach to process",
+			"type": "python",
+			"request": "attach",
+			"processId": "${command:pickProcess}",
+            "logToFile": true
+		}
+	],
+	"compounds": [
+		{
+			"name": "Client + Server",
+			"configurations": ["Launch Client", "Attach to process"]
+		}
+	]
+}

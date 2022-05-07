@@ -16,11 +16,16 @@
 	"engines": {
 		"vscode": "^1.63.0"
 	},
-	"activationEvents": [
-		"onLanguage:plaintext"
-	],
 	"main": "./client/out/extension",
+	"activationEvents": [
+		"onLanguage:rat"
+	],
 	"contributes": {
+		"languages": [{
+			"id": "rat",
+			"aliases": ["Rat", "rat"],
+			"extensions": [".rat"]
+		}],
 		"configuration": {
 			"type": "object",
 			"title": "Example configuration",
@@ -49,9 +54,8 @@
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -b",
 		"watch": "tsc -b -w",
-		"lint": "eslint ./client/src ./server/src --ext .ts,.tsx",
-		"postinstall": "cd client && npm install && cd ../server && npm install && cd ..",
-		"test": "sh ./scripts/e2e.sh"
+		"lint": "eslint ./client/src --ext .ts,.tsx",
+		"postinstall": "cd client && npm install && cd .."
 	},
 	"devDependencies": {
 		"@types/mocha": "^9.1.0",
