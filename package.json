@@ -26,6 +26,24 @@
 			"aliases": ["Rat", "rat"],
 			"extensions": [".rat"]
 		}],
+		"grammars": [
+		  {
+			"language": "rat",
+			"scopeName": "source.rat",
+			"path": "./syntaxes/rat.tmGrammar.json"
+		  }
+		],
+		// This won't do anything until semantic tokens are in place
+		"semanticTokenScopes": [
+		  {
+			"language": "rat",
+			"scopes": {
+			  "variable.data.rat": ["support.variable"],
+			  "support.distribution.rat": ["entity.name.function"],
+			  "support.function.rat": ["support.function"]
+			}
+		  }
+		],
 		"configuration": {
 			"type": "object",
 			"title": "Example configuration",
